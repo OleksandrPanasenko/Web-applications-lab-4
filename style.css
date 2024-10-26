@@ -305,8 +305,8 @@ footer{
         .main{
             grid-row: 4/5;
         }
-        .background{
-
+        .header-line{
+            grid-row: 1/4;
         }
     }
 
