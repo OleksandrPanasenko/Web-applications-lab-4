@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+}
 @font-face {
     font-family: Oswald;
     src: url(images/Oswald-VariableFont_wght.ttf);
@@ -20,7 +23,12 @@ body{
 input{
     border: none;
 }
+.fa-magnifying-glass:hover{
+    color: orange;
+    cursor: pointer;
+}
 #input-glass{
+    grid-area: 1/2/1/2;
     padding: 8px;
     display: flex;
     flex-direction: row;
@@ -29,6 +37,7 @@ input{
     border: 1px solid rgb(210, 210, 210);
     transition: outline 600ms;
     outline: none;
+    margin: 16px 0 16px 0;
 }
 input:focus{
     border: none;
@@ -38,10 +47,9 @@ input:focus{
     outline: 4px solid black;
     transition: outline 600ms;
 }
-.fa-bars{
-    
-}
+
 label{
+    grid-area: 1/3/1/3;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -54,23 +62,68 @@ label:hover, label:focus~.fa-bars{
     color: orange;
 }
 .hamburger-menu{
-    display: none;
+    overflow: hidden;
+    max-height: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    grid-area: 2/1/2/-1;
+    transition: max-height 2000ms ease-in;
+
 }
+
+
+#hamburger-check:checked~.hamburger-menu{
+    max-height: 400px;
+    transition: max-height 3000ms ease-out;
+}
+.hamburger-menu-element{
+    padding: 8px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: 2px solid rgb(210, 210, 210);
+}
+.hamburger-menu-element:hover{
+    background-color:rgb(210, 210, 210);
+}
+/*line jumping under*/
+.hamburger-menu-element>p{
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 2px;
+    margin: 0px;
+    width: fit-content;
+    align-self: center;
+    justify-self: center;
+}
+.hamburger-menu-element>p::after{
+    content: '';
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translate3d(0, 100%, 0);
+    opacity: 1;
+    transition: transform 0.6s ease;
+}
+.hamburger-menu-element:hover>p::after{
+    bottom: 0;
+    background-color: orange;
+    transform: translate3d(0, 0, 0);
+}
+
 .header-line{
     background-color: white;
     border: 2px solid rgb(210, 210, 210);
     grid-area: 1/1/3/-1;
+    overflow: hidden;
 }
-.header-inside{
-    grid-area: 1/2/2/-2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+
 .background{
-    grid-area: 3/1/3/5;
+    grid-area: 1/1/-1/-1;
     background-image: url("images/background.png");
     background-color: yellow;
     overflow: hidden;
@@ -141,10 +194,14 @@ footer{
 }
 .logo{
     width: 100px;
-    transition: background-color 500ms;
+    background-color: rgba(160, 160, 160, 0);
+    transition: background-color 300ms background-size 600ms;
+    background-size: cover;
+    transition: background-color 1s ease;
 }
 .logo:hover{
     background-color: rgba(160, 160, 160, 0.274);
+    background-size: 0;
 }
 .logo>img{
     width: 100%;
@@ -156,7 +213,6 @@ footer{
     gap: 24px;
 }
 .footer-menu>a{
-    text-decoration: none;
     color: rgb(121, 121, 121);
     font-family: Arial, Helvetica, sans-serif;
 }
